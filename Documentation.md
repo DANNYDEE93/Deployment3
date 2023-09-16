@@ -57,8 +57,6 @@ ________________________________________________________________________________
 
 9. Copy and paste admin password into Jenkins browser--> Create admin account-->Install suggested plugins
     
-    ![Pipleline](https://github.com/DANNYDEE93/Deployment2/blob/main/Images%20of%20Deployment%202/Download%20plugins%20for%20environment.png)
-   
 10. Press **New Item** tab to create new pipeline build --> Name pipeline --> Create multibranch pipeline --> Select GitHub through branch source --> Add Jenkins source and use GitHub credentials and token.
 ____________________________________________________
 *Switch to Github* --> Go back to newly created GitHub repository and copy the HTTP code or URL of the repository --> Paste code into "Repository line" in Jenkins.
