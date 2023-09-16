@@ -1,4 +1,4 @@
-## <ins>Deployment 3: AWS ElasticBeanstalk CLI Instance Staging Environment for Deployment</ins>
+## <ins>Deployment 3: AWS ElasticBeanstalk CLI Instance Staging Environment</ins>
 _________________________________________________
   ##### September 15, 2023
 ______________________________________
