@@ -1,6 +1,6 @@
-## <ins>Deployment 2: Jenkins EC2 Instance Deployment</ins>
+## <ins>Deployment 3: AWS ElasticBeanstalk CLI Instance Staging Environment for Deployment</ins>
 _________________________________________________
-  ##### August 23, 2023
+  ##### September 15, 2023
 ______________________________________
 ### <ins>PURPOSE:</ins>
 ___________________
