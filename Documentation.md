@@ -19,8 +19,8 @@ ____________________________________
 ###### **Below you will find the necessary steps that I took to provision my own Jenkins server for my staging environment and to provision my production environment through Elasticbeanstalk to deploy my web application:** 
 
 ## <ins> **ISSUES** </ins>
-_________________________________________________________
 
+_________________________________________________________
 
 ## <ins> **SYSTEM DIAGRAM** </ins>
 
@@ -35,12 +35,11 @@ _________________________________________________________
 
 4. Create **Documentation.md** file to record the staging and production environment of deployment.
 
-7. Unzip files by extracting Kura Lab repository contents from the folder downloaded on local computer to separate them from their parent folder and re-compress them into a new folder excluding that parent folder so that GitHub can read it properly and upload.
+5. Unzip files by extracting Kura Lab repository contents from the folder downloaded on local computer to separate them from their parent folder and re-compress them into a new folder excluding that parent folder so that GitHub can read it properly and upload.
 
-8. Upload Kura Lab repository files into new GitHub repository created in **Step 3**.
+6. Upload Kura Lab repository files into new GitHub repository created in **Step 3**.
 
-_________________________
-
+___________________________________________________________________________________
    
 <ins> ***Create Build in Jenkins to test application in staging environment:*** </ins>
 
@@ -51,14 +50,13 @@ _________________________
 &emsp;&emsp;&emsp;&emsp;        1a. Press **Instances** in the Dashboard --> Press **Launch Instance** button--> Name web server --> Select **Ubuntu** for OS --> Select **t2.micro** --> Select suggested key pair --> Select security groups that include: Port 22[SSH], 8080[JENKINS], & 443[EB CLI] under "Network Settings" (selected existing group with these protocols) --> Press **Launch Instance**.
 
 2. Within my EC2 instance: Download newest versions of  Python[3.10-venv] and Jenkins[2.414.1] -->
-6.
-7. (*proceed to Jenkins*) Copy and Paste ip address of EC2 and add port 8080 [**ip.address:8080**] to access web browser with Jenkins. 
+
+3. (*proceed to Jenkins*) Copy and Paste ip address of EC2 and add port 8080 [**ip.address:8080**] to access web browser with Jenkins. 
 
 8. (*proceed to EC2*) The web browser will show the location of admin passwrd --> Go back to EC2 and type **"sudo cat /var/lib/jenkins/secrets/initialAdminPassword"** (*proceed back to Jenkins*):
 
-
-9. Copy and paste admin password into Jenkins browser--> Create admin account-->Install suggested plugins --> Go to **Available plugins** in the settings--> Install **Pipeline Utility Steps** --> Soft restart the browser --> Sign back into Jenkins account:
-
+9. Copy and paste admin password into Jenkins browser--> Create admin account-->Install suggested plugins
+    
     ![Pipleline](https://github.com/DANNYDEE93/Deployment2/blob/main/Images%20of%20Deployment%202/Download%20plugins%20for%20environment.png)
    
 10. Press **New Item** tab to create new pipeline build --> Name pipeline --> Create multibranch pipeline --> Select GitHub through branch source --> Add Jenkins source and use GitHub credentials and token.
@@ -67,53 +65,62 @@ ____________________________________________________
 
 <ins> ***Create token for Jenkins using GitHub account:*** </ins>
 
-6. Go back to your GitHub and press profile picture/icon,
+11. Go back to your GitHub and press profile picture/icon,
 
-7. Select **Settings**-->**Developer Settings**-->**Personal Access Tokens**--> **Tokens(classic)**
+12. Select **Settings**-->**Developer Settings**-->**Personal Access Tokens**--> **Tokens(classic)**
 
-8. Select **Generate new token**-->**Generate new token (classic)**-->Sign into GitHub if prompted
+13. Select **Generate new token**-->**Generate new token (classic)**-->Sign into GitHub if prompted
 
-9. Create note description-->Select scopes: **repo** and **admin repo** to give full access to repository.
+14. Create note description-->Select scopes: **repo** and **admin repo** to give full access to repository.
 _____________________________________
 *Switch back to Jenkins* --> Click **Generate token**--> Copy and paste link into **password line** in Jenkins
 _____________________________________
 
-10. Continue on Jenkins-->Add token associated with repository-->
+15. Continue on Jenkins-->Add token associated with repository-->
 
-11. **Scan repository Now** to test build --> Select **Build History** to view console output with git commands and pipeline stage process --> Pass staging environment in Jenkins before proceeding.
+16. **Scan repository Now** to test build --> Select **Build History** to view console output with git commands and pipeline stage process --> Pass staging environment in Jenkins before proceeding.
 
 ***Check console output responses and check the phases of testing and passing the staging environment.***
 _______________________________________________
 *Switch back to AWS Instance account*
 
-14. Before downloading and configuring EB CLI into EC2, you need to ensure you have the correct IAM roles and access key...
-
+14. Before downloading and configuring EB CLI into EC2, you need to ensure you have the correct IAM roles and access key to allow EB CLI to manage resources for deployment.
 
 <ins> **Navigating through AWS Elastic Beanstalk** </ins>
 
 <ins>***Create IAM Roles for CLI***</ins>
 
 1. Sign into Amazon AWS console with appropriate **Account ID, IAM user name, and password**.
+
+2. Go to IAM Roles --> Click **Create Role**--> Select **AWS service** for trusted entity type-->Select **Elastic Beanstak Customizable** under cases --> Click **Next** --> Click **Next** --> Name Role: aws-elasticbeanstalk-service-role
     
-    
-3. To create the second and third role: Click **Create Role**--> Select **AWS service** for trusted entity type--> Click **EC2** under common use cases--> Click Next--> Under Permission policies: Select **AWSElasticBeanstalkWebTier**, **AWSElasticBeanstalkMulticontainerDocker** and **AWSElasticBeanstalkWorkerTier**--> Click Next--> Enter **Elastic-EC2** in **Role name** field--> Click **Create Role**.
+3. Click **Create Role**--> Select **AWS service** for trusted entity type--> Click **EC2** under common use cases--> Click Next--> Under Permission policies: Select **AWSElasticBeanstalkWebTier**, **AWSElasticBeanstalkMulticontainerDocker** and **AWSElasticBeanstalkWorkerTier**--> Click Next--> Enter **Elastic-EC2** in **Role name** field--> Click **Create Role**.
     
 ***These roles allow the instances in my web server environment to access and upload necessary files with AWS resources and grants permission for Amazon Elastic Container Service to organize and cluster task within container environments.***
 
 <ins>***Create AccessKey***</ins>
 
-1. Necessary to authorize access to the EC2 to download and configure AWS EB CLI to use .......
+1. Go back to IAM Roles --> Go to **Users** then clikc **username** --> Go to **Security Credentials** --> Click **Create access key** --> Click **Command Line Interface(CLI)** under use cases --> Check the box under **Confirmation** --> Click **Next** --> Label description tag --> **Create access key** --> **Download** .csv file to copy access key and password -->
+______________________
+**Switch back to EC2*
+___________________________
+2. Run command: **curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"**
+3. Run command: **unzip awscliv2.zip**
+4. Run command: **sudo ./aws/install**
+5. Run command: **sudo ./aws/install**
+6. Run command: **aws configure**
 
-___________________________________
+7. Enter your Access Key ID--> Enter Secret Access Key --> Default region: **us-east-1** --> Output format: **json** --> Run: **aws ec2 describe-instances** --> should result in **JSON output**
 
-*Switch back to EC2*
+8. Use **sudo su -jenkins -s /bin/bash** to sign into EC2 as Jenkins user & download newest versions of AWS ElasticBeanstalk command line interface [EB CLI 3.20.9]:
 
-15. Use sudo su ... to sign into EC2 as Jenkins user & download newest versions of AWS ElasticBeanstalk command line interface [EB CLI 3.20.9]:
-aws install 
-aws configure
+9. Run command: **sudo ./aws/install**
+10. Run command: **sudo ./aws/install**
+11. Run command: **aws configure**
+
 Use access key to
 
-Insert 'stage ('Deploy') { steps { sh '/var/lib/jenkins/.local/bin/eb deploy' } }' into Jenkins file to stage deployment
+Insert **stage ('Deploy') { steps { sh '/var/lib/jenkins/.local/bin/eb deploy' } }** into Jenkins file to stage deployment
 
 Scan repository in Jenkins to re-deploy --> Successful test
 _______________________
