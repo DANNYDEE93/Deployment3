@@ -27,9 +27,10 @@ _________________________________________________________
 
 ## <ins> **SYSTEM DIAGRAM** </ins>
 
+
+
 <ins> ***1. Diagram the plan for deployment on Draw.io:*** </ins>
 
-   
 2. Log into GitHub account.
 
 3. Create new GitHub repository.
@@ -39,10 +40,9 @@ _________________________________________________________
 7. Unzip files by extracting Kura Lab repository contents from the folder downloaded on local computer to separate them from their parent folder and re-compress them into a new folder excluding that parent folder so that GitHub can read it properly and upload.
 
 8. Upload Kura Lab repository files into new GitHub repository created in **Step 3**.
-_______________________________
 
-## <ins> **BUILD & TEST** </ins>
 _________________________
+
    
 <ins> ***Create Build in Jenkins to test application in staging environment:*** </ins>
 
@@ -93,7 +93,7 @@ _______________________________________________
 
 <ins> **Navigating through AWS Elastic Beanstalk** </ins>
 
-<ins>***Create IAM Roles***</ins>
+<ins>***Create IAM Roles for CLI***</ins>
 
 1. Sign into Amazon AWS console with appropriate **Account ID, IAM user name, and password**.
     
