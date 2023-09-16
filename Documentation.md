@@ -22,14 +22,12 @@ ____________________________________
 _________________________________________________________
 
 
-
-   ![Jenkins access](https://github.com/DANNYDEE93/Deployment2/blob/main/Images%20of%20Deployment%202/sudo%20cat%20admin%20psswrd.png)
-
 ## <ins> **SYSTEM DIAGRAM** </ins>
 
 
-
 <ins> ***1. Diagram the plan for deployment on Draw.io:*** </ins>
+
+![system diagram]([(https://github.com/DANNYDEE93/Deployment3/blob/main/system_diagram.jpg])
 
 2. Log into GitHub account.
 
