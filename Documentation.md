@@ -110,17 +110,19 @@ ___________________________
 
 7. Enter your Access Key ID--> Enter Secret Access Key --> Default region: **us-east-1** --> Output format: **json** --> Run: **aws ec2 describe-instances** --> should result in **JSON output**
 
-8. Use **sudo su -jenkins -s /bin/bash** to sign into EC2 as Jenkins user & download newest versions of AWS ElasticBeanstalk command line interface [EB CLI 3.20.9]:
+8. Once the above steps are completed, a new EC2 instance is created as a result of creating a new virtual environment within AWS EB CLI
 
-9. Run command:  **`pip install awsebcli --upgrade --user`**
-10. **`export PATH=$PATH:$HOME/.local/bin`
-11. eb version
-12. aws configure
-13. CD into workspace
-14. CD into multibranch pipeline file
-15. Run: **eb init** to initiate elastic beanstalk and set parameters for virtual environment
-16. Run: **eb create** to create environment to launch application
-17. Insert **stage ('Deploy') { steps { sh '/var/lib/jenkins/.local/bin/eb deploy' } }** into Jenkins file to stage deployment
+9. Use **sudo su -jenkins -s /bin/bash** to sign into EC2 as Jenkins user & download newest versions of AWS ElasticBeanstalk command line interface [EB CLI 3.20.9]:
+
+10. Run command:  **`pip install awsebcli --upgrade --user`**
+11. **`export PATH=$PATH:$HOME/.local/bin`
+12. eb version
+13. aws configure
+14. CD into workspace
+15. CD into multibranch pipeline file
+16. Run: **eb init** to initiate elastic beanstalk and set parameters for virtual environment
+17. Run: **eb create** to create environment to launch application
+18. Insert **stage ('Deploy') { steps { sh '/var/lib/jenkins/.local/bin/eb deploy' } }** into Jenkins file to stage deployment
 
 Scan repository in Jenkins to re-deploy --> Successful test
 Repeat steps 9-17 to redeploy application throught AWS EB CLI --> Successful
