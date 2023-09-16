@@ -6,23 +6,23 @@ ______________________________________
 ___________________
 &emsp;&emsp;&emsp;&emsp;    To provision a Jenkins server through a newly created AWS EC2 instance with necessary protocols, permissions and downloaded applications to successfully deploy web application. I previously used my instructor's Jenkins browser. Establishing my own Jenkins web browser and server gives me admin access over my own Jenkins browser and the ability to customize plugins for staging my virtual environment.
 
-&emsp;&emsp;&emsp;&emsp;    Even though my AWS account already includes the correct security group protocols, creating and launching my own EC2 instance also provides me the ability to customize my own instance with the necessary security groups to establish SSH protocols for remote access between my EC2 and Jenkins web server, as well as HTTP protocols so that AWS can use its resources to unencrypt my web application for deployment through my public IP address from my EC2 instance.
+&emsp;&emsp;&emsp;&emsp;     I customized my EC2 instance with the necessary security groups to establish SSH protocols for remote access between my EC2 and Jenkins web server, as well as HTTP and HTTPS protocols so that AWS ElasticBeanstalk Command Line Interface can use its resources to unencrypt my web application for deployment. I also updated my Jenkins code with a deploy stage through a multibranch pipeline to create multiple virtual environments to stage and test my application. Additionally, I created an API through a GitHub webhook to compare the different ways developers have to connect their web application or other applications from anywhere. 
 
-&emsp;&emsp;&emsp;&emsp;    Learning these fundamental steps gives me practice in how to start the steps in procuring my CICD pipeline for automating and scaling my deployment process in the future. Ensuring my skills to build my staging environment will help me ensure that my deployment is tested properly for high quality user experience, adequate server connection, and shows me the safest way to make sure that my web applications and servers will be ready before deployment for my future production environments.
+&emsp;&emsp;&emsp;&emsp;    Learning these fundamental steps gives me practice in how to launch my web application remotely through the terminal of an EC2 instance or other virtual server. Ensuring my skills to build my staging environment will help me ensure that my deployment is tested properly for high quality user experience, adequate server connection, and shows me the safest way to make sure that my web applications and servers will be ready before deployment for my future production environments.
 _______________________
 #### <ins> DESCRIPTION: </ins>
 __________________________
-&emsp;&emsp;&emsp;&emsp;        This project began diagramming the plan for my deployment in Draw.io including how I would use **GitHub**, **Jenkins**, and **AWS Elastic Beanstalk**. I handled my application codes for Jenkins and Python through Github. Then I continued to create my own Jenkins server through an EC2 instance that I downloaded the latest version of Python and Jenkins on, and launched with the necessary SSH and HTTP protocols for remote connection between my servers and to unencrypt my code that allows the web server to serve up my web application. Next, I built a staging environment through Jenkins with the plugins necessary to complete the CICD pipeline steps. Additionally, Jenkins allowed me to connect to my GitHub repository with the essential application codes so that I did not have to manually put them into Jenkins because they were already prepared in my repository. 
-
-&emsp;&emsp;&emsp;&emsp;        Once my application code passed the building test phase in Jenkins, I created IAM roles and a Python URL shortener virtual environment to build, test and deploy my application through Elastic Beanstalk. This allowed AWS access with the necessary permissions to update and launch my deployment through the IAM roles of **AWSElasticBeanstalkWebTier**, **AWSElasticBeanstalkMulticontainerDocker** and **AWSElasticBeanstalkWorkerTier**. The URL shortener was utilized so that the resources from AWS could easily machine-read the files I attached with my application code-- essentially compressing my URL so that it could fit neatly into Elastic Beanstalk's requirements for deployment within the virtual production environment I created. 
+&emsp;&emsp;&emsp;&emsp;        This project began diagramming the plan for my deployment in Draw.io including how I would use **GitHub**, **Jenkins**, and **AWS Elastic Beanstalk**. I handled my application codes for Jenkins and Python through Github. Then I continued to create my own Jenkins server through an EC2 instance that I downloaded the latest version of Python and Jenkins on, and launched with the necessary SSH and HTTP protocols for remote connection between my servers and to unencrypt my code that allows the web server to serve up my web application. Next, I built a staging environment through Jenkins with the plugins necessary to complete the CICD pipeline steps. Additionally, Jenkins allowed me to connect to my GitHub repository with the essential application codes so that I did not have to manually put them into Jenkins because they were already prepared in my repository. Lastly, I installed AWS ElasticBeanstalk Command Line Interface onto my EC2 to deploy my application directly from my EC2 instance terminal. 
 ____________________________________
 ###### **Below you will find the necessary steps that I took to provision my own Jenkins server for my staging environment and to provision my production environment through Elasticbeanstalk to deploy my web application:** 
 
-## <ins> **ISSUES** </ins>
+### <ins> **ISSUES** </ins>
 
 _________________________________________________________
 
-## <ins> **SYSTEM DIAGRAM** </ins>
+### <ins> **SYSTEM DIAGRAM** </ins>
+
+__________________________________________________________
 
 
 <ins> ***1. Diagram the plan for deployment on Draw.io:*** </ins>
@@ -112,25 +112,29 @@ ___________________________
 
 8. Use **sudo su -jenkins -s /bin/bash** to sign into EC2 as Jenkins user & download newest versions of AWS ElasticBeanstalk command line interface [EB CLI 3.20.9]:
 
-9. Run command: **sudo ./aws/install**
-10. Run command: **sudo ./aws/install**
-11. Run command: **aws configure**
-
-Use access key to
-
-Insert **stage ('Deploy') { steps { sh '/var/lib/jenkins/.local/bin/eb deploy' } }** into Jenkins file to stage deployment
+9. Run command:  **`pip install awsebcli --upgrade --user`**
+10. **`export PATH=$PATH:$HOME/.local/bin`
+11. eb version
+12. aws configure
+13. CD into workspace
+14. CD into multibranch pipeline file
+15. Run: **eb init** to initiate elastic beanstalk and set parameters for virtual environment
+16. Run: **eb create** to create environment to launch application
+17. Insert **stage ('Deploy') { steps { sh '/var/lib/jenkins/.local/bin/eb deploy' } }** into Jenkins file to stage deployment
 
 Scan repository in Jenkins to re-deploy --> Successful test
+Repeat steps 9-17 to redeploy application throught AWS EB CLI --> Successful
 _______________________
 
 Configure webhook:
 
-___________________
+Click "Settings" on your main repo page --> Click "Webhooks" --> Click "Add webhook" --> Click the "Payload URL" field. --> Enter: https//<public_ip_address:8080>.com --> Add webhook --> Click the http URL --> Click on recent deliveries --> Click on hash --> Check for 200 response code *purpose of the webhook is to post an application to another system over the web through an API which enables a developer to lauch application remotely*
 
 Changed "Page not found".html to "Be back soon.."
 
-Scan repository in Jenkins to re-deploy --> Successful test
+Scan repository in Jenkins to re-deploy --> Successful test --> git commit added to update html file
 
+Repeat steps 9-17 to redeploy application throught AWS EB CLI --> Successful
 
 ______________________________________
 
