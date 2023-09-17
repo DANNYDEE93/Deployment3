@@ -109,10 +109,9 @@ _____________________________________
 7. **Scan repository Now** to test build --> Select **Build History** to view console output with git commands and pipeline stage process --> Pass staging environment in Jenkins before proceeding.
 
 ***Check console output responses and check the phases of testing and passing the staging environment.***
-_______________________________________________
+__________________________________________________________________
 <ins> *Switch back to AWS Instance account* </ins> --> 8. Before downloading and configuring EB CLI into EC2, you need to ensure you have the correct IAM roles to provide permissions for EB CLI to manage resources for deployment and access key credentials to enter into EC2 instance to authorize the connection. 
-_________________________________________________
-
+______________________________________________________________________
 <ins> **Naviagting through AWS Elastic Beanstalk** </ins>
 
 
