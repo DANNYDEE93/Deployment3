@@ -162,13 +162,13 @@ ________________________________________
     *[t3. micro instance storage is more expensive thatn t2. micro but more helpful for larger applications, faster throughput and lower latency]*
 
 _________________________________
-<ins> *switch to GitHub Jenkins file* </ins>
+<ins> *Switch to GitHub Jenkins file* </ins>
 ___________________________________________
 
 15. Insert **stage ('Deploy') { steps { sh '/var/lib/jenkins/.local/bin/eb deploy' } }** into Jenkins file to stage deployment
     *[once this deployment stage is added to Jenkins file, we can re-deploy the application code in the AWS EB CLI to deploy my application. Once a new EB environment is created, the listed application URL will run successfully in a new browser]*
 
-*switch to Jenkins browser*
+*Switch to Jenkins browser*
 
 16. Scan repository in Jenkins to re-deploy --> Successful test
 
@@ -190,4 +190,5 @@ ______________________________________
 ## <ins>**ISSUES/ OPTIMIZATION**</ins>
 ________________________________________
 &emsp;&emsp;&emsp;&emsp;        This deployment helped me understand the different environments for staging and producing my web application on a greater and more efficient level. I ran into issues when trying to install Jenkins because I forgot the necessary steps. This could have been fixed by having them recorded in an easily accessible place on my cpu. I also had trouble with downloading AWS EB CLI. I realized that I needed to download the necessary packages in my OS Ubuntu as well as in the Jenkins user so that Jenkins can successfully utilize the command line interface. If you don't do the steps to install AWS EB CLI as the Jenkins user, eb commands will not be installed to be used to initiate and create an EB environment for deployment. 
+
 &emsp;&emsp;&emsp;&emsp;        To optimize this type of deployment, I will create and include a Bash script that when run, it will automatically install Jenkins and another Bash script for AWS EB CLI so that i can save time on constantly installing and configuring the same applications for future deployments. 
