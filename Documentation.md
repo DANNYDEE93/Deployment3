@@ -90,8 +90,7 @@ ________________________________________________________________________________
 8. Press **New Item** tab to create new pipeline build --> Name pipeline --> Create multibranch pipeline --> Select GitHub through branch source --> Add Jenkins source and use GitHub credentials and token. *[multibranch pipeline allows the implemention of different Jenkinsfiles for different branches of the same project which you will need for later steps in this process where I update my Jenkins file in my repo]*
 ____________________________________________________
 <ins> *Switch to Github* </ins> --> 9. Go back to newly created GitHub repository and copy the HTTP code or URL of the repository --> Paste code into "Repository line" in Jenkins.
-
-
+____________________________________________________
 <ins> ***Create token for Jenkins using GitHub account:*** </ins>
 
 1. Go back to your GitHub and press profile picture/icon,
@@ -112,7 +111,7 @@ _____________________________________
 ***Check console output responses and check the phases of testing and passing the staging environment.***
 _______________________________________________
 <ins> *Switch back to AWS Instance account* </ins> --> 8. Before downloading and configuring EB CLI into EC2, you need to ensure you have the correct IAM roles to provide permissions for EB CLI to manage resources for deployment and access key credentials to enter into EC2 instance to authorize the connection. 
-
+_________________________________________________
 
 <ins> **Naviagting through AWS Elastic Beanstalk** </ins>
 
@@ -130,9 +129,9 @@ _______________________________________________
 <ins>***Create AccessKey***</ins>
 
 4. Go back to IAM Roles --> Go to **Users** then clikc **username** --> Go to **Security Credentials** --> Click **Create access key** --> Click **Command Line Interface(CLI)** under use cases --> Check the box under **Confirmation** --> Click **Next** --> Label description tag --> **Create access key** --> **Download** .csv file to copy access key and password -->
-______________________
+_________________________________
 <ins> *Switch back to EC2 terminal and run the following commands to install AWS* </ins>
-___________________________
+__________________________________
 1. Run command: **curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"** *[download zipped package of AWS to merge Elastic Beanstalk into it]*
 
 2. Run command: **unzip awscliv2.zip** *[package to unzip files to make them accessible in instance]*
@@ -164,11 +163,9 @@ ________________________________________
 14. Run: **eb create** to create environment to launch application
        *[**eb create** creates a new t3.micro instance/ server in AWS EB with the parameters entered within the **eb init** command; this new instance is helpful in case my current instance goes down, then my application can continue to be deployed on each newly created t3.micro instance]*
     *[t3. micro instance storage is more expensive thatn t2. micro but more helpful for larger applications, faster throughput and lower latency]*
-
 _________________________________
 <ins> *Switch to GitHub Jenkins file* </ins>
 ___________________________________________
-
 15. Insert **stage ('Deploy') { steps { sh '/var/lib/jenkins/.local/bin/eb deploy' } }** into Jenkins file to stage deployment
     *[once this deployment stage is added to Jenkins file, we can re-deploy the application code in the AWS EB CLI to deploy my application. Once a new EB environment is created, the listed application URL will run successfully in a new browser]*
 
