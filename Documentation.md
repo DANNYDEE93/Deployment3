@@ -57,23 +57,23 @@ ________________________________________________________________________________
 
    **sudo apt install unzip**
 
-3.<ins>Run commands in EC2 terminal to download newest versions and packages for Jenkins 2.414.1:</ins> 
+3. <ins>Run commands in EC2 terminal to download newest versions and packages for Jenkins 2.414.1:</ins> 
 
-  **sudo apt update** --> 
+   **sudo apt update** --> 
   
-  **sudo apt install openjdk-17-jre** *[we need to install Java for Jenkins to install and run properly because Jenkins is written in the Java program language]* -->
+   **sudo apt install openjdk-17-jre** *[we need to install Java for Jenkins to install and run properly because Jenkins is written in the Java program language]* -->
   
-  **java -version** *[check for current java version]* --> 
+   **java -version** *[check for current java version]* --> 
   
-  **curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee \ /usr/share/keyrings/jenkins-keyring.asc > /dev/null echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \ https://pkg.jenkins.io/debian-stable binary/ | sudo tee \ /etc/apt/sources.list.d/jenkins.list > /dev/null** *[to install Ubuntu requirements to allow Jenkins to run properly in EC2 instance]* --> 
+   **curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee \ /usr/share/keyrings/jenkins-keyring.asc > /dev/null echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \ https://pkg.jenkins.io/debian-stable binary/ | sudo tee \ /etc/apt/sources.list.d/jenkins.list > /dev/null** *[to install Ubuntu requirements to allow Jenkins to run properly in EC2 instance]* --> 
   
-  **sudo apt-getupdate** --> 
+   **sudo apt-getupdate** --> 
+
+   **sudo apt-get install jenkins** --> 
   
-  **sudo apt-get install jenkins** --> 
+   **sudo systemctl start jenkins.service** --> 
   
-  **sudo systemctl start jenkins.service** --> 
-  
-  **sudo systemctl status jenkins** *[checks that jenkins package is actively running on EC2]*
+   **sudo systemctl status jenkins** *[checks that jenkins package is actively running on EC2]*
 
 4. Download newest versions of  Python[3.10-venv]: Run commands: "python3.10-venv", "python-pip", "unzip"and Jenkins[2.414.1] -->
 
