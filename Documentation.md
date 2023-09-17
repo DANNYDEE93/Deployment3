@@ -130,11 +130,12 @@ _______________________
 
 Configure webhook:
 
-Click "Settings" on your main repo page --> Click "Webhooks" --> Click "Add webhook" --> Click the "Payload URL" field. --> Enter: https//<public_ip_address:8080>.com --> Add webhook --> Click the http URL --> Click on recent deliveries --> Click on hash --> Check for 200 response code *purpose of the webhook is to post an application to another system over the web through an API which enables a developer to lauch application remotely*
+Click "Settings" on your main repo page --> Click "Webhooks" --> Click "Add webhook" --> Click the "Payload URL" field. --> Enter: https//<public_ip_address:8080>.com --> Add webhook --> Click the http URL --> Click on recent deliveries --> Click on hash --> Check for 200 response code [POST request to server]  *purpose of the webhook is to post the application to the Jenkins server over the web through an API which allowed the applicationto launch remotely before i went back to the Jenkins server*
 
 Changed "Page not found".html to "Be back soon.."
 
 Scan repository in Jenkins to re-deploy --> Successful test --> git commit added to update html file
+*
 
 Repeat steps 9-17 to redeploy application throught AWS EB CLI --> Successful
 
