@@ -27,7 +27,7 @@ __________________________________________________________
 
 <ins> ***1. Diagram the plan for deployment on Draw.io:*** </ins>
 
-![system diagram](https://github.com/DANNYDEE93/Deployment3/blob/main/system_diagram.jpg)
+![system diagram](https://github.com/DANNYDEE93/Deployment3/blob/main/system_diagram3.jpg)
 
 2. Log into GitHub account.
 
