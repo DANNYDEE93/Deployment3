@@ -51,15 +51,15 @@ ________________________________________________________________________________
 
 2. <ins> Run commands in EC2 terminal to download newest versions and packages for Pyhton 3.10:</ins>
 
-   **sudo apt update** -->
+   **sudo apt update** --> *[update system and checks for upgrades]*
 
-   **sudo apt upgrade** -->
+   **sudo apt upgrade** -->*[upgrade any applications that need upgrading]
 
    **sudo apt install python3.10-venv** *[for the python virtual environment]* -->
 
    **sudo apt install python3-pip** *[includes the dependencies needed for the packages being installed]* -->
 
-   **sudo apt install unzip**
+   **sudo apt install unzip** *[extract the content from a compressed file]*
 
 3. <ins>Run commands in EC2 terminal to download newest versions and packages for Jenkins 2.414.1:</ins> 
 
@@ -71,7 +71,7 @@ ________________________________________________________________________________
   
    **curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee \ /usr/share/keyrings/jenkins-keyring.asc > /dev/null echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \ https://pkg.jenkins.io/debian-stable binary/ | sudo tee \ /etc/apt/sources.list.d/jenkins.list > /dev/null** *[to install Ubuntu requirements to allow Jenkins to run properly in EC2 instance]* --> 
   
-   **sudo apt-getupdate** --> 
+   **sudo apt-getupdate** --> *[only updates package index]*
 
    **sudo apt-get install jenkins** --> 
   
@@ -83,7 +83,7 @@ ________________________________________________________________________________
 
 5. (*proceed to Jenkins*) Copy and Paste ip address of EC2 and add port 8080 [**ip.address:8080**] to access web browser with Jenkins. 
 
-6. (*proceed to EC2*) The web browser will show the location of admin passwrd --> Go back to EC2 and type **"sudo cat /var/lib/jenkins/secrets/initialAdminPassword"** (*proceed back to Jenkins*):
+6. (*proceed to EC2*) The web browser will ask for admin password --> Go back to EC2 and type **"sudo cat /var/lib/jenkins/secrets/initialAdminPassword"** (*proceed back to Jenkins*):
 
 7. Copy and paste admin password into Jenkins browser--> Create admin account-->Install suggested plugins
     
@@ -139,13 +139,13 @@ __________________________________
 
 4. Run command: **aws configure** *[update AWS package and enter the following info from your AWS account: ]*
 
-5. Enter your Access Key ID--> Enter Secret Access Key --> Default region: **us-east-1** --> Output format: **json** --> Run: **aws ec2 describe-instances** --> should result in **JSON output**
+5. Enter your Access Key ID--> Enter Secret Access Key --> Default region: **us-east-1** *[where your virtual server is located]* --> Output format: **json** *[format that I want my data to output in simple text data]* --> Run: **aws ec2 describe-instances** *[get information about your EC2 instances in AWS.]* --> should result in **JSON output**
 
 6. Run **sudo su -jenkins -s /bin/bash** to sign into EC2 as Jenkins user & download newest versions of AWS ElasticBeanstalk command line interface [EB CLI 3.20.9]:
 ______________________________________
 <ins> *Continue signed in as Jenkins user in EC2 terminal to upgrade AWS package to include EB CLI:* </ins>
 ________________________________________
-7. Run command:  **pip install awsebcli --upgrade --user**
+7. Run command:  **pip install awsebcli --upgrade --user** *[to install or upgrade the AWS Elastic Beanstalk Command Line Interface (EB CLI)]; pip runs package installer for Python that should have been installed in your EC2 earlier]*
   
 8. Run command: **export PATH=$PATH:$HOME/.local/bin** *[direction to specific directory to find commands for Elastic Beanstalk]*
 
