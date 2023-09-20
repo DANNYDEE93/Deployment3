@@ -49,7 +49,7 @@ ________________________________________________________________________________
 
 &emsp;&emsp;&emsp;&emsp;        1a. Press **Instances** in the Dashboard --> Press **Launch Instance** button--> Name web server --> Select **Ubuntu** for OS --> Select **t2.micro** --> Select suggested key pair --> Select security groups that include: Port 22[SSH], 8080[JENKINS], & 443[EB CLI] under "Network Settings" (selected existing group with these protocols) --> Press **Launch Instance**.
 
-2. <ins> Run commands in EC2 terminal to download newest versions and packages for Pyhton 3.10:</ins>
+2. <ins> Run commands in EC2 terminal to download newest versions and packages for Python 3.10:</ins>
 
    **sudo apt update** --> *[update system and checks for upgrades]*
 
@@ -87,7 +87,7 @@ ________________________________________________________________________________
 
 7. Copy and paste admin password into Jenkins browser--> Create admin account-->Install suggested plugins
     
-8. Press **New Item** tab to create new pipeline build --> Name pipeline --> Create multibranch pipeline --> Select GitHub through branch source --> Add Jenkins source and use GitHub credentials and token. *[multibranch pipeline allows the implemention of different Jenkinsfiles for different branches of the same project which you will need for later steps in this process where I update my Jenkins file in my repo]*
+8. Press **New Item** tab to create new pipeline build --> Name pipeline --> Create multibranch pipeline --> Select GitHub through branch source --> Add Jenkins source and use GitHub credentials and token. *[multibranch pipeline allows the implementation of different Jenkins files for different branches of the same project which you will need for later steps in this process where I update my Jenkins file in my repo]*
 ____________________________________________________
 <ins> *Switch to Github* </ins> --> 9. Go back to newly created GitHub repository and copy the HTTP code or URL of the repository --> Paste code into "Repository line" in Jenkins.
 ____________________________________________________
@@ -117,7 +117,7 @@ ______________________________________________________________________
 
 <ins>***Create IAM Roles for CLI***</ins>
 
-1. Sign into Amazon AWS console with appropriate **Account ID, IAM user name, and password**.
+1. Sign into Amazon AWS console with appropriate **Account ID, IAM username, and password**.
 
 2. Go to *IAM Roles* --> Click **Create Role**--> Select **AWS service** for trusted entity type-->Select **Elastic Beanstak Customizable** under cases --> Click **Next** --> Click **Next** --> Name Role: aws-elasticbeanstalk-service-role
     
@@ -127,7 +127,7 @@ ______________________________________________________________________
 
 <ins>***Create AccessKey***</ins>
 
-4. Go back to IAM Roles --> Go to **Users** then clikc **username** --> Go to **Security Credentials** --> Click **Create access key** --> Click **Command Line Interface(CLI)** under use cases --> Check the box under **Confirmation** --> Click **Next** --> Label description tag --> **Create access key** --> **Download** .csv file to copy access key and password -->
+4. Go back to IAM Roles --> Go to **Users** then click **username** --> Go to **Security Credentials** --> Click **Create access key** --> Click **Command Line Interface(CLI)** under use cases --> Check the box under **Confirmation** --> Click **Next** --> Label description tag --> **Create access key** --> **Download** .csv file to copy access key and password -->
 _________________________________
 <ins> *Switch back to EC2 terminal and run the following commands to install AWS* </ins>
 __________________________________
@@ -181,7 +181,7 @@ __________________________________
 1. Click **Settings** on your main repo page --> Click **Webhooks** on the side dashboard --> Click **Add webhook** --> Click the **Payload URL** field. --> Enter: **https//<public_ip_address:8080>.com** --> Add webhook --> Click the **http URL** --> Click on recent deliveries --> Click on hash --> Check for **successful 200 response code** [POST request to server to accept the data on the application code enclosed in the ip address of my instance  
     *[purpose of the webhook is to automatically triggers the application to the Jenkins server over the web through an API]*
     
-2. Changed "Page not found".html file messagee to "Be back soon.." if an user runs into an issue with loading the page after getting a 404 error code. *[once completed, a git commit is made to my GitHub repo that automatically triggers a new test for the build of my Jenkins project with 1 commit displayed in the console output of my build history --no need to re-scan repo in Jenkins because the webhook will git push the changes to the application automatically.]*
+2. Changed "Page not found".html file message to "Be back soon.." if an user runs into an issue with loading the page after getting a 404 error code. *[once completed, a git commit is made to my GitHub repo that automatically triggers a new test for the build of my Jenkins project with 1 commit displayed in the console output of my build history --no need to re-scan repo in Jenkins because the webhook will git push the changes to the application automatically.]*
 
 3. Repeat ***steps 7-14** to redeploy application through AWS EB CLI --> Successful
 
